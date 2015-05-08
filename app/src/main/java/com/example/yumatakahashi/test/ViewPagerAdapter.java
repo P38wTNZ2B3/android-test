@@ -2,6 +2,8 @@ package com.example.yumatakahashi.test;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.util.LruCache;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -9,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 
@@ -72,7 +76,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         //imageIcon.setImageResource(R.mipmap.droid_blue);
 
 
+        //RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = MyApplication.getInstance().getRequestQueue();
+        String url = "http://techbooster.org/wp-content/uploads/2013/08/densi.png";
 
+        NetworkImageView nImageView = (NetworkImageView) view.findViewById(R.id.network_image_view);
+        nImageView.setImageUrl(url, new ImageLoader(queue, new LruCacheSample()));
+        //nImageView.setImageUrl(url, new ImageLoader(queue, new NoImageCacheSample   ()));
 
         try {
 
@@ -91,6 +101,53 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(View container, int position, Object object) {
         ((ViewPager) container).removeView((View) object);
+    }
+
+    public class NoImageCacheSample implements ImageLoader.ImageCache {
+
+        NoImageCacheSample(){
+        }
+
+        // ImageCacheのインターフェイス実装
+        @Override
+        public Bitmap getBitmap(String url) {
+            return null;
+        }
+
+        @Override
+        public void putBitmap(String url, Bitmap bitmap) {
+
+        }
+    }
+
+    public class LruCacheSample implements ImageLoader.ImageCache {
+
+        private LruCache<String, Bitmap> mMemoryCache;
+
+        LruCacheSample(){
+            int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+            int cacheSize = maxMemory / 8;       // 最大メモリに依存
+            // int cacheSize = 5 * 1024 * 1024;  // 5MB
+
+            mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+                @Override
+                protected int sizeOf(String key, Bitmap bitmap) {
+                    // 使用キャッシュサイズ(KB単位)
+                    return bitmap.getByteCount() / 1024;
+                }
+            };
+        }
+
+        // ImageCacheのインターフェイス実装
+        @Override
+        public Bitmap getBitmap(String url) {
+            return mMemoryCache.get(url);
+        }
+
+        @Override
+        public void putBitmap(String url, Bitmap bitmap) {
+            mMemoryCache.put(url,bitmap);
+        }
     }
 
 

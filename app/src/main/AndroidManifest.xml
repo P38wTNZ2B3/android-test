@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.yumatakahashi.test" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.yumatakahashi.test.SubActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+
+                <!-- 暗黙的 Intent を扱う際に必須のカテゴリ -->
+                <!-- システムは、Activity の起動に暗黙的 Intent を発行すると、 -->
+                <!-- このカテゴリが付与されているものとして扱うため、Activity で暗黙的 Intent を受け取りたい場合は -->
+                <!-- 必ずこのカテゴリを <intent-filter> に宣言しておく -->
+                <!-- 複数のカテゴリを <intent-filter> に宣言した場合は、 -->
+                <!-- 全てのカテゴリにマッチするもののみを受け取る、という意味になる -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name="com.example.yumatakahashi.test.StartedService"/>
+        <service
+            android:name="com.example.yumatakahashi.test.BoundService"/>
+    </application>
+
+</manifest>

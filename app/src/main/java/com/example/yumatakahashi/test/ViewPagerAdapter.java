@@ -24,24 +24,18 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     ArrayList<ModelClass> arrayModelClasses = new ArrayList<ModelClass>();
 
-    private ImageLoader mImageLoader;
-
     @SuppressLint("NewApi")
     @Override
     public void finishUpdate(ViewGroup container) {
-        // TODO Auto-generated method stub
         super.finishUpdate(container);
 
     }
 
     public ViewPagerAdapter() {
-
         super();
-
     }
 
     public ViewPagerAdapter(ArrayList<ModelClass> arrayModelClasses) {
-
         super();
         this.arrayModelClasses = arrayModelClasses;
 
@@ -49,18 +43,16 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-
         return arrayModelClasses.size();
-
     }
 
     @Override
     public boolean isViewFromObject(View collection, Object object) {
-
         return collection == ((View) object);
     }
 
     @Override
+    //public Object instantiateItem(ViewGroup collection, int position) {
     public Object instantiateItem(View collection, int position) {
 
         // Inflating layout
@@ -71,45 +63,35 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         TextView itemText = (TextView) view.findViewById(R.id.title);
 
-        //startAsyncLoadImage("http://test-yuma.s3.amazonaws.com/test/droid.png");
-        //ImageView imageIcon = (ImageView) view.findViewById(R.id.icon);
-        //imageIcon.setImageResource(R.mipmap.droid_blue);
-
-
-        //RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = MyApplication.getInstance().getRequestQueue();
         //String url = "http://techbooster.org/wp-content/uploads/2013/08/densi.png";
         String url = arrayModelClasses.get(position).getTitleToDisplay();
 
         NetworkImageView nImageView = (NetworkImageView) view.findViewById(R.id.network_image_view);
         nImageView.setImageUrl(url, new ImageLoader(queue, new LruCacheSample()));
-        //nImageView.setImageUrl(url, new ImageLoader(queue, new NoImageCacheSample   ()));
+        //nImageView.setImageUrl(url, new ImageLoader(queue, new NoImageCacheSample()));
         //nImageView.setDefaultImageResId(defaultImageResId);
         //nImageView.setErrorImageResId(errorImageResId);
 
         try {
-
             itemText.setText(arrayModelClasses.get(position)
                     .getTitleToDisplay());
-
         } catch (Exception e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         ((ViewPager) collection).addView(view, 0);
         return view;
-
     }
 
     @Override
+    //public void destroyItem(ViewGroup container, int position, Object object) {
     public void destroyItem(View container, int position, Object object) {
         ((ViewPager) container).removeView((View) object);
     }
 
     public class NoImageCacheSample implements ImageLoader.ImageCache {
 
-        NoImageCacheSample(){
-        }
+        NoImageCacheSample() {}
 
         // ImageCacheのインターフェイス実装
         @Override
@@ -119,7 +101,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         @Override
         public void putBitmap(String url, Bitmap bitmap) {
-
         }
     }
 
@@ -152,6 +133,4 @@ public class ViewPagerAdapter extends PagerAdapter {
             mMemoryCache.put(url,bitmap);
         }
     }
-
-
 }

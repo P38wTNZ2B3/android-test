@@ -21,8 +21,7 @@ public class ListViewPagerAdapter extends ArrayAdapter<ModelClass> {
     private ArrayList<ModelClass> navigationItems;
     private int selectedIndex;
 
-    public ListViewPagerAdapter(Context context,
-                                ArrayList<ModelClass> navigationItems) {
+    public ListViewPagerAdapter(Context context, ArrayList<ModelClass> navigationItems) {
         super(context, R.layout.view_pager_list_view, navigationItems);
         this.context = context;
         this.navigationItems = navigationItems;
@@ -30,7 +29,6 @@ public class ListViewPagerAdapter extends ArrayAdapter<ModelClass> {
 
     @Override
     public int getCount() {
-
         return navigationItems.size();
     }
 
@@ -41,28 +39,32 @@ public class ListViewPagerAdapter extends ArrayAdapter<ModelClass> {
 
     @Override
     public ModelClass getItem(int position) {
-
         return navigationItems.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-
         return position;
     }
 
     @SuppressLint("NewApi")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        ViewHolder holder;
         if (convertView == null) {
-
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            //convertView = View.inflate(getContext(), R.layout.view_pager_list_view, parent);
             convertView = inflater.inflate(R.layout.view_pager_list_view, null);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        ViewPager vp = (ViewPager) convertView.findViewById(R.id.list_pager);
+        ModelClass modelClass = getItem(position);
+
+        //ViewPager vp = (ViewPager) convertView.findViewById(R.id.list_pager);
+
         /*if (selectedIndex != -1 && position == selectedIndex) {
             vp.setBackground(getContext().getResources().getDrawable(
                     //R.drawable.gradient_selected));
@@ -81,9 +83,17 @@ public class ListViewPagerAdapter extends ArrayAdapter<ModelClass> {
         }*/
 
         mViewPagerAdapter = new ViewPagerAdapter(navigationItems);
-        vp.setAdapter(mViewPagerAdapter);
+        holder.vp.setAdapter(mViewPagerAdapter);
 
         return convertView;
+    }
+
+    private static class ViewHolder {
+        ViewPager vp;
+
+        public ViewHolder(View view) {
+            this.vp = (ViewPager) view.findViewById(R.id.list_pager);
+        }
     }
 
 }

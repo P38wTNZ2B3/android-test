@@ -78,11 +78,14 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         //RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = MyApplication.getInstance().getRequestQueue();
-        String url = "http://techbooster.org/wp-content/uploads/2013/08/densi.png";
+        //String url = "http://techbooster.org/wp-content/uploads/2013/08/densi.png";
+        String url = arrayModelClasses.get(position).getTitleToDisplay();
 
         NetworkImageView nImageView = (NetworkImageView) view.findViewById(R.id.network_image_view);
         nImageView.setImageUrl(url, new ImageLoader(queue, new LruCacheSample()));
         //nImageView.setImageUrl(url, new ImageLoader(queue, new NoImageCacheSample   ()));
+        //nImageView.setDefaultImageResId(defaultImageResId);
+        //nImageView.setErrorImageResId(errorImageResId);
 
         try {
 

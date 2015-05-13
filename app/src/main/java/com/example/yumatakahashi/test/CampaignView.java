@@ -40,20 +40,113 @@ public class CampaignView extends Fragment implements AbsListView.OnScrollListen
         return campainview;
     }
 
-    private final static String[] s = {
+    private final static String[] s_tmp = {
             //"https://test-yuma.s3.amazonaws.com/test/droid.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            //"https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            /*"https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",*/
+
+
+/*
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+            "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+*/
             "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png"
+    };
+
+    String[][] s = {
+            {
+                    "https://test-yuma.s3.amazonaws.com/test/droid.png",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_blue.png",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/test/droid_red.png"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img01.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img02.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img03.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img04.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img05.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img06.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img07.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img08.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img09.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img10.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img11.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img12.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img13.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img14.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img15.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img16.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img17.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img18.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img19.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img20.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img21.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img22.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img23.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img24.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img25.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img26.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img27.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img28.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img29.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img30.jpg"
+            },
+            {
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img31.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img32.jpg",
+                    "https://s3-ap-northeast-1.amazonaws.com/test-yuma/iphoroid/gallery_img33.jpg"
+            },
+
     };
 
     @Override
@@ -129,8 +222,11 @@ public class CampaignView extends Fragment implements AbsListView.OnScrollListen
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (totalItemCount == firstVisibleItem + visibleItemCount) {
             additionalReading();
+            //readFlag = true;
         }
     }
+
+    //private boolean readFlag = false;
 
     private void additionalReading() {
         // 読み込み回数が最大値以上ならスキップ。フッタを消す
@@ -156,9 +252,55 @@ public class CampaignView extends Fragment implements AbsListView.OnScrollListen
 
             protected void onPostExecute(Void result) {
                 addListData();
-                getListView().invalidateViews();
+
+                mAdapter.notifyDataSetChanged();
+                //getListView().invalidateViews();
+                //invisibleFooter();
+
+                /*ListView list = getListView();
+                //int start = list.getFirstVisiblePosition();
+                //for (int i = start, j = list.getLastVisiblePosition(); i <= j; i++) {
+                for (int i = 6; i < 11; i++) {
+                    //if (target == list.getItemAtPosition(i)) {
+                    View view = list.getChildAt(i);
+                    list.getAdapter().getView(i, view, list);
+                    //break;
+                }*/
+
+                /*ListView list = getListView();
+                int start = list.getFirstVisiblePosition();
+                //for (int i = start, j = list.getLastVisiblePosition(); i <= j; i++) {
+                for (int i = start, j = start + 5; i < j; i++) {
+                    //if (target == list.getItemAtPosition(i)) {
+                        View view = list.getChildAt(i - start);
+                        list.getAdapter().getView(i, view, list);
+                        //break;
+                    //}
+                }*/
             };
         }.execute(Math.abs(new Random(System.currentTimeMillis()).nextLong() % 3000));
+        //}.execute(3000);
+        /*if (readFlag) {
+            return;
+        }
+        mTask = new AsyncTask<Long, Void, Void>() {
+            @Override
+            protected Void doInBackground(Long[] params) {
+                try {
+                    Log.d(TAG, "sleep..." + params[0]);
+                    Thread.sleep(params[0]);
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                }
+                return null;
+            };
+
+            protected void onPostExecute(Void result) {
+                addListData();
+                getListView().invalidateViews();
+            };
+        }.execute(Math.abs(new Random(System.currentTimeMillis()).nextLong() % 3000));*/
     }
 
     private void invisibleFooter() {
@@ -183,8 +325,8 @@ public class CampaignView extends Fragment implements AbsListView.OnScrollListen
     private ArrayList<ModelClass> getAllList() {
         if (allList == null) {
             allList = new ArrayList<ModelClass>();
-            for (String string : s) {
-                ModelClass m = new ModelClass(string);
+            for (String[] urls : s) {
+                ModelClass m = new ModelClass(urls);
                 allList.add(m);
             }
         }
@@ -194,7 +336,7 @@ public class CampaignView extends Fragment implements AbsListView.OnScrollListen
     private void addListData() {
         Log.d(TAG, "additionalReading");
         ArrayList<ModelClass> list = getList();
-        Log.d(TAG, getAllList().toString());
+        //Log.d(TAG, getAllList().toString());
         int from = mCount * VISIBLE_ITEM_COUNT;
         int to = Math.min((mCount + 1) * VISIBLE_ITEM_COUNT, getAllList().size());
         ArrayList<ModelClass> subList = new ArrayList<ModelClass>(getAllList().subList(from, to));

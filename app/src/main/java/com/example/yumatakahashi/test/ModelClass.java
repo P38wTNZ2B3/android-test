@@ -7,20 +7,24 @@ package com.example.yumatakahashi.test;
 public class ModelClass {
 
 
-    private String titleToDisplay;
+    //private String titleToDisplay;
+    //private ArrayList<String> imageUrl;
+    private String[] imageUrl;
 
 
 
-    public ModelClass(String question) {
+    //public ModelClass(ArrayList<String> imageUrl) {
+    public ModelClass(String[] imageUrl) {
         super();
-        this.titleToDisplay = question;
+        this.imageUrl = imageUrl;
     }
 
-    public String getTitleToDisplay() {
-        return titleToDisplay;
+    //public ArrayList<String> getImageUrl() {
+    public String[] getImageUrl() {
+        return this.imageUrl;
     }
 
-    public void setTitleToDisplay(String titleToDisplay) {
-        this.titleToDisplay = titleToDisplay;
-    }
+    //public void setTitleToDisplay(String titleToDisplay) {
+    //    this.titleToDisplay = titleToDisplay;
+    //}
 }

@@ -1,6 +1,5 @@
 package com.example.yumatakahashi.test;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
@@ -16,7 +15,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,11 +23,11 @@ import java.util.Map;
  */
 public class ViewPagerAdapter extends PagerAdapter {
 
-    ArrayList<ModelClass> arrayModelClasses = new ArrayList<ModelClass>();
+    //ArrayList<ModelClass> arrayModelClasses = new ArrayList<ModelClass>();
     //ModelClass modelClass = new ModelClass();
     ModelClass modelClass;
 
-    @SuppressLint("NewApi")
+    //@SuppressLint("NewApi")
     @Override
     public void finishUpdate(ViewGroup container) {
         super.finishUpdate(container);

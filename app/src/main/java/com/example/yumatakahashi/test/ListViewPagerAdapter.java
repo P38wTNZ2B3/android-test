@@ -50,7 +50,8 @@ public class ListViewPagerAdapter extends ArrayAdapter<ModelClass> {
         }
 
         if (holder.vp.getTag() == null || !holder.vp.getTag().equals(position)) {
-            holder.vp.setAdapter(new ViewPagerAdapter(navigationItems.get(position), position));
+            //holder.vp.setAdapter(new ViewPagerAdapter(navigationItems.get(position), position));
+            holder.vp.setAdapter(new ViewPagerAdapter(navigationItems.get(position)));
             holder.vp.setTag(position);
         }
 

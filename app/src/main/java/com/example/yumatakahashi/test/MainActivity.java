@@ -1,22 +1,35 @@
 package com.example.yumatakahashi.test;
 
-import android.content.Intent;
+//import android.app.ActionBar;
+
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 
+//import android.support.v7.app.ActionBar;
+
 
 //public class MainActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Bitmap> {
-public class MainActivity extends FragmentActivity {
+//public class MainActivity extends FragmentActivity {
+//public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends Activity {
+
 
     //ネットリクエストをQueue
     private RequestQueue mQueue;
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    ViewPager mViewPager;
+    ScrollViewPagerIndicator mViewPagerIndicator;
 
 
     @Override
@@ -32,7 +45,9 @@ public class MainActivity extends FragmentActivity {
 */
 
 
-        ImageView iv = (ImageView)this.findViewById(R.id.image01);
+
+        ///////////////////////////////////////////////////////////////////////
+        /*ImageView iv = (ImageView)this.findViewById(R.id.image01);
         // drawableフォルダにある任意のイメージを設定
         iv.setImageResource(R.mipmap.ic_launcher);
 
@@ -51,7 +66,38 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);
                     }
                 }
-        );
+        );*/
+        ///////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+        CustomPagerAdapter adapter = new CustomPagerAdapter(this);
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(adapter);
+
+        mViewPagerIndicator = (ScrollViewPagerIndicator) findViewById(R.id.indicator);
+        //mViewPagerIndicator.setCount(adapter.getCount());
+        mViewPagerIndicator.setCount(adapter.getCount(), mViewPager);
+        /*for (int i = 0; i < adapter.getCount(); i++) {
+            mViewPagerIndicator.setCount(mViewPager);
+        }*/
+
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        super.onPageSelected(position);
+                        mViewPagerIndicator.setCurrentPosition(position);
+                    }
+                });
+
+        mViewPager.setOnPageChangeListener(mViewPagerIndicator);
+
+
+
 
 
         //mQueue = Volley.newRequestQueue(getApplicationContext());
@@ -175,7 +221,56 @@ public class MainActivity extends FragmentActivity {
         });
         */
 
+
     }
+
+
+    static class CustomPagerAdapter extends PagerAdapter {
+
+        static final int[] mImages = { R.mipmap.image5, R.mipmap.image6,
+                R.mipmap.image7, R.mipmap.image8 };
+
+        Context mContext;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public int getCount() {
+            return mImages.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View v, Object o) {
+            return ((View) o).equals(v);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView iv = new ImageView(mContext);
+            iv.setImageResource(mImages[position]);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            container.addView(iv);
+            return iv;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            View v = (View) object;
+            container.removeView(v);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     /*
     // Loaderの初期化から起動までを行います
     public void startAsyncLoadImage(String url) {
